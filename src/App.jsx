@@ -15,10 +15,12 @@ function App() {
     }
   ]);
 
+
+
   return(
 
     <>
-      <Navbar/>
+      <Navbar cartData={cart}/>
       <Outlet context={{cart, setCart}}/>
     </>
   );

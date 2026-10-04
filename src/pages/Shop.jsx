@@ -59,7 +59,7 @@ export default function Shop() {
             try {
                 const response = await fetch("https://fakestoreapi.noksha.dev/api/products");
                 const productsData = await response.json();
-                console.log(productsData)
+                
                 //setProducts(productsData)
                 
             }
@@ -70,7 +70,7 @@ export default function Shop() {
 
         }
 
-        fetchProducts()
+        //fetchProducts()
         
         
     }, [])
