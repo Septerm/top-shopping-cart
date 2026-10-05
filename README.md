@@ -10,7 +10,7 @@ A simple frontend for a e-commerce website built in react and using fakestore ap
 
 ## Live Demo
 
-
+https://868krew.netlify.app/
 
 ## Getting Started
 
