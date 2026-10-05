@@ -2,17 +2,12 @@ import { useState } from 'react'
 import './App.css'
 import Navbar from './components/Navbar';
 import { Outlet } from 'react-router';
+import Footer from './components/Footer';
 
 function App() {
 
   const [cart, setCart] = useState([
-    {
-      id: 'jack12',
-      title: "Long sleeve Jacket",
-      image: "https://images.pexels.com/photos/2584269/pexels-photo-2584269.jpeg",
-      price: 150,
-      quantity: 1,
-    }
+    
   ]);
 
 
@@ -21,7 +16,10 @@ function App() {
 
     <>
       <Navbar cartData={cart}/>
+     
       <Outlet context={{cart, setCart}}/>
+       <Footer/>
+      
     </>
   );
 

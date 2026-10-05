@@ -7,23 +7,23 @@ export default function ProductCard({data}) {
     const {cart, setCart} = useOutletContext();
 
 
-    const isInCart = cart.some((product) => product.id === data.id);
+    const isInCart = cart.some((product) => product._id === data._id);
 
     const addToCart = (item) => {
         setCart((prev) =>
-        prev.some((p) => p.id === item.id) ? prev : [...prev, item]
+        prev.some((p) => p._id === item._id) ? prev : [...prev, item]
         );
     };
 
-    const removeFromCart = (id) => {
-        setCart((prev) => prev.filter((p) => p.id !== id));
+    const removeFromCart = (_id) => {
+        setCart((prev) => prev.filter((p) => p._id !== _id));
     };
 
     function addToCartButton() {
 
         return (
 
-            <button type="button" onClick={() => addToCart({id: data.id, title: data.title, price: data.price, image: data.image, quantity: 1,})} className="cursor-pointer"><span className="material-symbols-outlined">shopping_bag</span></button>
+            <button type="button" onClick={() => addToCart({_id: data._id, title: data.title, price: data.price, image: data.image, quantity: 1,})} className="cursor-pointer"><span className="material-symbols-outlined">shopping_bag</span></button>
         )
     }
 
@@ -31,16 +31,16 @@ export default function ProductCard({data}) {
 
         return (
 
-            <button type="button" onClick={() => removeFromCart(data.id)} className=" text-red-700 cursor-pointer"><span className="material-symbols-outlined">shopping_bag</span></button>
+            <button type="button" onClick={() => removeFromCart(data._id)} className=" text-red-700 cursor-pointer"><span className="material-symbols-outlined">shopping_bag</span></button>
         )
     }
 
 
     return (
-        <div className="max-w-3xs shadow-xl rounded-2xl">
+        <div className="max-w-3xs shadow-xl bg-[rgb(255,255,255)] rounded-2xl">
 
-            <div className="max-w-full aspect-auto overflow-hidden rounded-t-2xl ">
-                <img src={data.image} alt={data.title }  className=" object-cover rounded-t-2xl transition-transform duration-300 hover:scale-105 max-w-full" />
+            <div className="aspect-4/5 w-full overflow-hidden rounded-t-2xl bg-gray-100 ">
+                <img src={data.image} alt={data.title } loading="lazy"  decoding="async"  className="h-full w-full object-cover transition-transform duration-300 hover:scale-105" />
 
                 
             </div>

@@ -1,33 +1,9 @@
 import { useOutletContext } from "react-router";
-import Navbar from "../components/Navbar";
 
 export default function Cart() {
 
     const {cart, setCart} = useOutletContext();
-    // const data = [
-    //     {
-    //         id: "jack12",
-    //         title: "Long sleeve Jacket",
-    //         image: "https://images.pexels.com/photos/2584269/pexels-photo-2584269.jpeg",
-    //         price: 150,
-    //         quantity: 1,
-    //     },
-    //     {
-    //         id: "jack13",
-    //         title: "Long sleeve Jacket",
-    //         image: "https://images.pexels.com/photos/2584269/pexels-photo-2584269.jpeg",
-    //         price: 150,
-    //         quantity: 1,
-    //     },
-    //     {
-    //         id: "jack14",
-    //         title: "Long sleeve Jacket",
-    //         image: "https://images.pexels.com/photos/2584269/pexels-photo-2584269.jpeg",
-    //         price: 150,
-    //         quantity: 1,
-    //     },
-
-    // ]
+   
 
     function addQuantityButton(item) {
 
@@ -37,7 +13,7 @@ export default function Cart() {
 
 
             return prev.map(product =>
-                product.id === item.id
+                product._id === item._id
                 ? {...product, quantity: newQuantity}
                 : product
             )
@@ -56,7 +32,7 @@ export default function Cart() {
 
 
                 return prev.map(product =>
-                    product.id === item.id
+                    product._id === item._id
                     ? {...product, quantity: newQuantity}
                     : product
                 )
@@ -71,15 +47,41 @@ export default function Cart() {
         
     }
 
-    const removeFromCart = (id) => {
-        setCart((prev) => prev.filter((p) => p.id !== id));
+    function emptyCart() {
+
+        return(
+            <div>
+                <h3>Your cart is currently empty</h3>
+            </div>
+        )
+    }
+
+    function totalCost() {
+
+        let total = 0;
+
+        cart.map( (item) => {
+
+            total = total + (item.price * item.quantity);
+        })
+
+        return total
+    }
+
+    function dummyCheckout() {
+
+        alert("This is a demo site not checkout available!")
+    }
+
+    const removeFromCart = (_id) => {
+        setCart((prev) => prev.filter((p) => p._id !== _id));
     };
 
     return(
         <>
         <main className="p-2 text-center sm:p-8">
             <h2 className="text-5xl mb-4 sm:mb-8">Your Cart</h2>
-            <form className="mr-auto ml-auto  max-w-7xl">
+            { cart.length == 0 ? emptyCart() : <form className="mr-auto ml-auto  max-w-7xl">
                 <table className="w-full  text-center sm:text-left">
                     <thead >
                         <tr >
@@ -94,7 +96,7 @@ export default function Cart() {
                         {cart.map( (item,index) => {
                             return (
                                 
-                                <tr key={item.id}>
+                                <tr key={item._id}>
 
                                     <td className="p-2 border-b border-blue-gray-100 ">
 
@@ -109,15 +111,15 @@ export default function Cart() {
 
                                     <td className=" border-b border-blue-gray-100">
                                         <div className="border-2 flex max-w-10 sm:max-w-20 flex-col-reverse sm:flex-row items-center">
-                                            <button type="button" onClick={() => subtractQuantityButton(item)}  className=" sm:p-2 font-bold">-</button>
-                                            <input className="max-w-10 " min={1} onChange={() => e.target.value} value={item.quantity} type="number" />
-                                            <button type="button" onClick={() => addQuantityButton(item)} className="font-bold">+</button>
+                                            <button type="button" aria-label={`reduce the amount of item by 1`} onClick={() => subtractQuantityButton(item)}  className=" sm:p-2 font-bold cursor-pointer">-</button>
+                                            <input className="max-w-10 text-center sm:text-center " min={1} onChange={() => e.target.value} value={item.quantity} type="number" />
+                                            <button type="button" aria-label={`increase the amount of item by 1`} onClick={() => addQuantityButton(item)} className="font-bold cursor-pointer">+</button>
                                         </div>
                                     </td>
                                     <td className="p-1 sm:p-2 border-b border-blue-gray-100">
                                         <div className="flex flex-col sm:flex-row items-center gap-4 justify-between">
                                             <p>$ {item.price * item.quantity}</p>
-                                            <button type="button" onClick={() => removeFromCart(item.id)} className="p-2 bg-red-700 text-white rounded-2xl hover:bg-red-800 cursor-pointer">Remove</button>
+                                            <button type="button" aria-label={`removes item from cart`} onClick={() => removeFromCart(item._id)} className="p-2 bg-red-700 text-white rounded-2xl hover:bg-red-800 cursor-pointer">Remove</button>
                                         </div>
                             
                                     </td>
@@ -129,10 +131,24 @@ export default function Cart() {
                             )
 
                         })}
+
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td className="p-2 sm:p-4 border-b border-blue-gray-100">
+                                <p className="text-md sm:text-2xl font-bold">{`SUBTOTAL: $ ${totalCost()}`}</p>
+                            </td>
+                        </tr>
                         
                     </tbody>
                 </table>
-            </form>
+
+                <div className="flex justify-end mt-4 sm:mt-8">
+                    <button type="button" onClick={dummyCheckout} className="p-2 sm:p-4 cursor-pointer rounded-2xl bg-red-700 hover:bg-red-800 text-white">Checkout</button>
+                </div>
+                
+            </form>}
         </main>
         </>
         

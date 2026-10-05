@@ -20,7 +20,7 @@ export default function Navbar({cartData}) {
 
     return(
 
-        <header className= " bg-[rgb(19,18,18)] text-white">
+        <header className= " bg-[rgb(19,18,18)] shadow-md shadow-gray-500 border-b-2 border-red-700 text-white">
 
             <div className= " flex flex-col p-4 gap-2 items-center  sm:flex sm:flex-row sm:justify-between  sm:p-8 max-w-7xl mr-auto ml-auto"> 
                 <h1 aria-label="868 Krew Logo" >
@@ -30,8 +30,11 @@ export default function Navbar({cartData}) {
                 <nav className="flex  items-center gap-4"> 
                     <NavLink to={"/"}><p className="text-xl">Home</p></NavLink>
                     <NavLink to={"/shop"}><p className="text-xl">Shop</p></NavLink>
-                    <NavLink to={"/cart"}><p className="text-2xl"><span className="material-symbols-outlined ">shopping_bag</span></p></NavLink>
-                    <span>{quantity}</span>
+                    <NavLink to={"/cart"}><p className="text-2xl"><span aria-label="Cart" className="material-symbols-outlined ">shopping_bag</span></p></NavLink>
+                    <div className="rounded-[10px] bg-red-700 pr-2 pl-2">
+                        <span className="font-bold">{quantity}</span>
+                    </div>
+                    
                 </nav>
             </div>
 
