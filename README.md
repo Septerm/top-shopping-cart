@@ -1,26 +1,53 @@
-# React + Vite
+# The Odin Project - Memory Card Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple frontend for a e-commerce website built in react and using fakestore api and react router for handling navigation for the SPA  as part of the the odin project curriculum, the application has a shop page where you can add various items to your cart and then go on the cart page where you can select how much of each item you want to to buy and tell you in real time the total cost of all of your goods and the total amount of items currently in your cart.
 
-Currently, two official plugins are available:
+## Built With
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React - this app is built in react
+- fakestore API - used for getting product data for the application
+- ESLInt -  used for detecting issues in code 
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Live Demo
 
 
-{
-    id: asdasda,
-    title: name,
-    price: 120,
-    quanity: 1,
 
-}
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) and npm installed on your machine.
+
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/Septerm/top-shopping-cart.git
+
+# Navigate into the project
+cd top-shopping-cart
+
+# Install dependencies
+npm install
+```
+
+### Running the Development Server
+
+```bash
+npm run dev
+```
+
+This starts the Webpack dev server and serves the app locally (usually at `http://localhost:5173`), with live reloading as you edit.
+
+
+## Author
+
+**Garion Charles** — [GitHub](https://github.com/Septerm)
+
+
+
+## License
+
+This project is licensed under the ISC License.
 
